@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+}
+
+header{
+    background-image: url("img/headerBackGround.png");
+    background-repeat: no-repeat;
+    background-size: cover ;
+    padding: 50px 70px;
+}
+
+header h1{
+    color: #FFD15B;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 150px;
+    font-family: 'Anton';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 66px;
+}
+
+header #searchContainer{
+    height: 50px;
+    background-color: white;
+    border-radius: 11px;
+    padding: 10px;
+    display: flex;
+    width: 75%;
+    margin: auto;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+
+header #searchContainer input {
+    border: none;
+    outline: none;
+    width: 80%;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #7A7A7A;
+}
+
+header #searchContainer img:hover{
+    cursor: pointer;
+}
+
+header #searchContainer img#close{
+    border-radius: 10px;
+    padding: 10px;
+    width: 17px;
+    height: 17px;
+    margin: auto;
+    margin-right: 25px;
+}
+header #searchContainer img#loupe{
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
