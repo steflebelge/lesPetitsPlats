@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Les petits plats</title>
+    <!--    <script src="test.js"></script>-->
+<!--        <script src="testAnimeaux.js"></script>-->
+    <script type="module" src="script.js"></script>
 </head>
 <body>
-    <header>
-        <img src="img/logo.svg" alt="">
-        <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
-        <div id="searchContainer">
-            <input type="text" placeholder="Rechercher une recette, un ingrédient, ...">
-            <img id="close" src="img/close.png" alt="">
-            <img id="loupe" src="img/loupe.png" alt="">
+<header>
+    <img src="img/logo.svg" alt="">
+    <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+    <div class="searchContainer">
+        <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." oninput="updateConditionsArray('texte', this.value)">
+        <img class="close" src="img/close.png" alt="" onclick="this.previousElementSibling.value=''">
+        <img class="loupe" src="img/loupe.png" alt="">
+    </div>
+</header>
+<main>
+    <section id="filtres">
+        <div class="dropdown hyde">
+            <p onclick="this.parentElement.classList.toggle('hyde')">Ingredients</p>
+            <img class="displayListe" src="img/displayListe.png" alt="">
+            <span class="liste" id="listeIngredients" data-type="ingredients">
+            <div class="searchContainer">
+                <input type="text" placeholder="Rechercher un ingrédient">
+                <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''">
+                <img class="loupe" src="img/loupe.png" alt="">
+            </div>
+                <ul class="selected"></ul>
+                <ul class="unselected"></ul>
+            </span>
         </div>
-    </header>
+        <div class="dropdown hyde">
+            <p onclick="this.parentElement.classList.toggle('hyde')">Appareils</p>
+            <img class="displayListe" src="img/displayListe.png" alt="">
+            <span class="liste" id="listeAppareils" data-type="ustensiles">
+            <div class="searchContainer">
+                <input type="text" placeholder="Rechercher un appareil">
+                <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''">
+                <img class="loupe" src="img/loupe.png" alt="">
+            </div>
+                <ul class="selected"></ul>
+                <ul class="unselected"></ul>
+            </span>
+        </div>
+        <div class="dropdown hyde">
+            <p onclick="this.parentElement.classList.toggle('hyde')">Ustensiles</p>
+            <img class="displayListe" src="img/displayListe.png" alt="">
+            <span class="liste" id="listeUstensiles" data-type="appareil">
+            <div class="searchContainer">
+                <input type="text" placeholder="Rechercher un ustensile">
+                <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''">
+                <img class="loupe" src="img/loupe.png" alt="">
+            </div>
+                <ul class="selected"></ul>
+                <ul class="unselected"></ul>
+            </span>
+        </div>
+    </section>
+    <section id="resultats">
+
+    </section>
+</main>
 </body>
 </html>
+
+
+<!--
+    - Variantes de couleurs des loupes :  hover
+    - branches git séparées pour methode native et spécifique a l array
+    -
+-->
