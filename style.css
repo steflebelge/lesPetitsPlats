@@ -1,16 +1,21 @@
-body{
+body {
     margin: 0;
     background: #E5E5E5;
 }
 
-header{
+main section#resultats div.carteRecette > div p,
+main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+    margin: 0;
+}
+
+header {
     background-image: url("img/headerBackGround.png");
     background-repeat: no-repeat;
-    background-size: cover ;
+    background-size: cover;
     padding: 50px 70px;
 }
 
-header h1{
+header h1 {
     color: #FFD15B;
     text-align: center;
     width: 50%;
@@ -23,7 +28,7 @@ header h1{
     line-height: 66px;
 }
 
-header div.searchContainer{
+header div.searchContainer {
     height: 50px;
     background-color: white;
     border-radius: 11px;
@@ -33,6 +38,7 @@ header div.searchContainer{
     margin: auto;
     margin-top: 50px;
     justify-content: space-between;
+    max-width: 1440px;
 }
 
 header div.searchContainer input {
@@ -47,15 +53,15 @@ header div.searchContainer input {
     color: #7A7A7A;
 }
 
-div.searchContainer input:placeholder-shown + img{
+div.searchContainer input:placeholder-shown + img {
     display: none;
 }
 
-div.searchContainer img:hover{
+div.searchContainer img:hover {
     cursor: pointer;
 }
 
-div.searchContainer img.close{
+div.searchContainer img.close {
     border-radius: 10px;
     padding: 10px;
     width: 17px;
@@ -63,21 +69,26 @@ div.searchContainer img.close{
     margin: auto;
     margin-right: 25px;
 }
-div.searchContainer img.loupe{
+
+div.searchContainer img.loupe {
     background-color: black;
     border-radius: 10px;
     padding: 10px;
 }
-
-main{
+div.searchContainer img.loupe:hover {
+    background-color: #FFD15B;
+}
+main {
     padding: 20px 102px;
+    max-width: 1440px;
+    margin: auto;
 }
 
-main section{
+main section {
     display: flex;
 }
 
-main section#filtres div.dropdown{
+main section#filtres div.dropdown {
     background: #FFFFFF;
     border-radius: 11px;
     margin-right: 25px;
@@ -88,11 +99,17 @@ main section#filtres div.dropdown{
     width: 15%;
     height: max-content;
 }
-main section#filtres div.dropdown.hyde{
+
+main section#filtres div.dropdown:not(.hyde) {
+    overflow: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+main section#filtres div.dropdown.hyde {
     max-height: 56px;
 }
 
-main section#filtres div.dropdown p{
+main section#filtres div.dropdown p {
     cursor: pointer;
     font-weight: 500;
     font-size: 16px;
@@ -103,57 +120,188 @@ main section#filtres div.dropdown p{
     padding: 16px;
 }
 
-main section#filtres div.dropdown img.displayListe{
+main section#filtres div.dropdown img.displayListe {
     width: 15px;
     position: absolute;
     right: 15px;
     top: 23px;
 }
+
 main section#filtres div.dropdown:not(.hyde) img.displayListe {
     rotate: 180deg;
 }
-main section#filtres span.liste{
-    margin-top: 6px;
+
+main section#filtres span.liste {
+    margin-top: 54px;
+    position: absolute;
+    z-index: 10;
+    display: block;
+    background: #FFFFFF;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+    width: 100%;
 }
-main section#filtres span.liste div.searchContainer{
+
+main section#filtres span.liste div.searchContainer {
     height: 36px;
     margin: 0 15px;
     border: 1px solid grey;
+    position: relative;
 }
-main section#filtres span.liste div.searchContainer img{
+
+main section#filtres span.liste div.searchContainer img {
     padding: 5px;
     width: 18px;
     height: 18px;
-    margin-right: 0;
-    vertical-align: baseline;
-    margin-top: 5px;
+    top: 5px;
+    right: 10px;
+    position: absolute;
     background-color: #fff0;
     filter: brightness(0) saturate(100%) invert(70%) sepia(0%) saturate(0%) hue-rotate(44deg) brightness(94%) contrast(95%);
 }
+
 main section#filtres span.liste div.searchContainer img.close {
     width: 13px;
     height: 13px;
-    vertical-align: top;
-    padding-top: 7px;
+    top: 6px;
+    right: 15px;
 }
+
 main section#filtres span.liste div.searchContainer input {
     border: none;
     height: 95%;
     outline: none;
-    width: 70%;
+    width: 90%;
     vertical-align: top;
 }
+
 main section#filtres span.liste div.searchContainer input:placeholder-shown {
     width: 83%;
 }
-main section#filtres span.liste ul{
+
+main section#filtres span.liste ul {
     list-style-type: none;
     padding-left: 0;
 }
-main section#filtres span.liste ul li{
-    padding : 10px 0 10px 15px;
+
+main section#filtres span.liste ul li {
+    padding: 10px 0 10px 15px;
     cursor: pointer;
 }
-main section#filtres span.liste ul li:hover{
+main section#filtres span.liste ul li.hyde {
+    display: none;
+}
+
+main section#filtres span.liste ul li:hover {
     background: #FFD15B;
 }
+
+
+main section#resultats {
+    flex-wrap: wrap;
+    gap: 66px 48px;
+    margin-top: 55px;
+    justify-content: space-between;
+}
+
+main div#squeletteCarteRecette {
+    display: none;
+}
+
+main section#resultats div.carteRecette {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+    border-radius: 21px;
+    position: relative;
+}
+
+main section#resultats div.carteRecette > img {
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+    height: 250px;
+    object-fit: cover;
+}
+
+main section#resultats div.carteRecette > p.time {
+    background: #FFD15B;
+    border-radius: 14px;
+    width: fit-content;
+    padding: 5px 10px;
+    position: absolute;
+    right: 22px;
+    top: 21px;
+}
+
+main section#resultats div.carteRecette > div {
+    padding: 25px;
+    padding-bottom: 61px;
+}
+
+main section#resultats div.carteRecette > div h2 {
+    font-family: 'Anton';
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    margin: 30px 0;
+}
+
+main section#resultats div.carteRecette > div h3 {
+    font-family: 'Manrope';
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #7A7A7A;
+    margin: 15px 0;
+}
+main section#resultats div.carteRecette > div h3:last-of-type {
+    margin-top: 30px;
+}
+
+main section#resultats div.carteRecette > div p.description,
+main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #1B1B1B;
+}
+
+main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+    font-weight: 500;
+}
+
+main section#resultats div.carteRecette > div span.listeIngredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 0;
+}
+
+main section#resultats div.carteRecette > div span.listeIngredients > div {
+    width: 50%;
+}
+
+main section#resultats div.carteRecette > div span.listeIngredients > div p {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #7A7A7A;
+}
+
+
+/*description tronquée : */
+
+/*main section#resultats div.carteRecette {*/
+/*    max-height: 730px;*/
+/*}*/
+
+/*p.description {*/
+/*    height: 76px;*/
+/*    overflow: hidden;*/
+/*}*/
