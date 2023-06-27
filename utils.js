@@ -87,6 +87,8 @@ function displayMatchingRecipes() {
         let newCarteRecette = getNewRecetteCarte(recipeTmp);
         sectionResultats.appendChild(newCarteRecette);
     });
+
+    document.querySelector('section#filtres').querySelector('p#nbResultats').innerText = matchingRecipes.length + " recettes";
 }
 
 //Fonction de filtre des listes de tag

@@ -1,5 +1,11 @@
 import {recipes} from "./recipes.js";
-import {orderStringList, capitalizeFirstLetter, getComparativeString, displayMatchingRecipes, getNewRecetteCarte} from "./utils.js";
+import {
+    orderStringList,
+    capitalizeFirstLetter,
+    getComparativeString,
+    displayMatchingRecipes,
+    getNewRecetteCarte
+} from "./utils.js";
 import {computeMatchingRecipes} from "./rechercheObjet.js";
 
 //log de la date time du debut
@@ -22,22 +28,29 @@ let unMatchingRecipes = [];
 
 //remplissage des variables de listes
 function fillInVarListes() {
+    let newListeUstensiles = JSON.parse(JSON.stringify(conditionsRecherche['ustensiles']));
+    let newListeIngredients = JSON.parse(JSON.stringify(conditionsRecherche['ingredients']));
+    let newListeAppareils = conditionsRecherche['appareils'] ? JSON.parse(JSON.stringify(conditionsRecherche['appareils'])) : [];
+
     matchingRecipes.forEach(function (recipeTmp) {
         recipeTmp.ustensils.forEach(function (ustensilTmp) {
-            if (!listeUstensiles.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(ustensilTmp))) {
-                listeUstensiles.push(capitalizeFirstLetter(ustensilTmp));
-            }
+            if (!newListeUstensiles.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(ustensilTmp)))
+                newListeUstensiles.push(capitalizeFirstLetter(ustensilTmp));
+
         });
         recipeTmp.ingredients.forEach(function (ingredientTmp) {
-            if (!listeIngredients.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(ingredientTmp.ingredient))) {
-                listeIngredients.push(capitalizeFirstLetter(ingredientTmp.ingredient));
-            }
-        });
+            if (!newListeIngredients.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(ingredientTmp.ingredient)))
+                newListeIngredients.push(capitalizeFirstLetter(ingredientTmp.ingredient));
 
-        if (!listeAppareils.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(recipeTmp.appliance))) {
-            listeAppareils.push(capitalizeFirstLetter(recipeTmp.appliance));
-        }
+        });
+        if (!newListeAppareils.find(trucTemp => getComparativeString(trucTemp) === getComparativeString(recipeTmp.appliance)))
+            newListeAppareils.push(capitalizeFirstLetter(recipeTmp.appliance));
+
     });
+
+    listeUstensiles = newListeUstensiles;
+    listeIngredients = newListeIngredients;
+    listeAppareils = newListeAppareils;
 
     //tri par ordre alphabetique des listes
     orderStringList(listeUstensiles);
@@ -47,22 +60,69 @@ function fillInVarListes() {
 
 //remplissage des elements html listes
 function fillInHtmlListes() {
-    //remplissage des unselected restants
-    document.querySelector('span#listeUstensiles').lastElementChild.innerHTML = "";
-    document.querySelector('span#listeIngredients').lastElementChild.innerHTML = "";
-    document.querySelector('span#listeAppareils').lastElementChild.innerHTML = "";
+    //vidage des listes
+    document.querySelector('span#listeUstensiles').querySelectorAll('ul').forEach(function (listeTmp) {
+        listeTmp.innerHTML = "";
+    });
+    document.querySelector('span#listeIngredients').querySelectorAll('ul').forEach(function (listeTmp) {
+        listeTmp.innerHTML = "";
+    });
+    document.querySelector('span#listeAppareils').querySelectorAll('ul').forEach(function (listeTmp) {
+        listeTmp.innerHTML = "";
+    });
+    document.querySelector('div#tagList').innerHTML = "";
+
+    //remplissage des unselected
     listeUstensiles.forEach(function (ustensilTmp) {
-        document.querySelector('span#listeUstensiles').lastElementChild.innerHTML += "<li data-value='" + ustensilTmp + "' data-type='ustensiles' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ustensilTmp + "</li>";
+        document.querySelector('span#listeUstensiles').lastElementChild.innerHTML += "<li data-value='" + ustensilTmp + "' data-type='ustensiles' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ustensilTmp + "<img src='img/remove.png' alt=''></li>";
     });
     listeIngredients.forEach(function (ingredientTmp) {
-        document.querySelector('span#listeIngredients').lastElementChild.innerHTML += "<li data-value='" + ingredientTmp + "' data-type='ingredients' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ingredientTmp + "</li>";
+        document.querySelector('span#listeIngredients').lastElementChild.innerHTML += "<li data-value='" + ingredientTmp + "' data-type='ingredients' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ingredientTmp + "<img src='img/remove.png' alt=''></li>";
     });
     listeAppareils.forEach(function (appareilTmp) {
-        document.querySelector('span#listeAppareils').lastElementChild.innerHTML += "<li data-value='" + appareilTmp + "' data-type='appareil' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + appareilTmp + "</li>";
+        document.querySelector('span#listeAppareils').lastElementChild.innerHTML += "<li data-value='" + appareilTmp + "' data-type='appareil' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + appareilTmp + "<img src='img/remove.png' alt=''></li>";
     });
 
     //remplissage des tags selectionnés (selected)
-
+    //ingredients
+    conditionsRecherche.ingredients.forEach(function (ingTmp) {
+        //on recupere l element li associé a l ingredient en cours
+        let matchingIngredient = document.querySelector('span#listeIngredients').querySelector('li[data-value="' + ingTmp + '"]');
+        if(!matchingIngredient)
+            debugger
+        //si il est encore dans la liste des non selectionnés, on le deplace
+        if (matchingIngredient.parentElement.classList.contains('unselected')) {
+            document.querySelector('span#listeIngredients').querySelector('ul.selected').innerHTML += matchingIngredient.outerHTML;
+            matchingIngredient.remove();
+        }
+        document.querySelector('div#tagList').innerHTML += `<span>${ingTmp}<img data-type="ingredients" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
+    });
+    //appareil
+    if (conditionsRecherche.appareil) {
+        //on recupere l element li associé a l appareil
+        let matchingAppareil = document.querySelector('span#listeAppareils').querySelector('li[data-value="' + conditionsRecherche.appareil + '"]');
+        if(!matchingAppareil)
+            debugger
+        //si il est encore dans la liste des non selectionnés, on le deplace
+        if (matchingAppareil.parentElement.classList.contains('unselected')) {
+            document.querySelector('span#listeAppareils').querySelector('ul.selected').innerHTML += matchingAppareil.outerHTML;
+            matchingAppareil.remove();
+        }
+        document.querySelector('div#tagList').innerHTML += `<span>${conditionsRecherche.appareil}<img data-type="appareil" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
+    }
+    //ustensiles
+    conditionsRecherche.ustensiles.forEach(function (ustensileTmp) {
+        //on recupere l element li associé a l ingredient en cours
+        let matchingUstensile = document.querySelector('span#listeUstensiles').querySelector('li[data-value="' + ustensileTmp + '"]');
+        if(!matchingUstensile)
+            debugger
+        //si il est encore dans la liste des non selectionnés, on le deplace
+        if (matchingUstensile.parentElement.classList.contains('unselected')) {
+            document.querySelector('span#listeUstensiles').querySelector('ul.selected').innerHTML += matchingUstensile.outerHTML;
+            matchingUstensile.remove();
+        }
+        document.querySelector('div#tagList').innerHTML += `<span>${ustensileTmp}<img data-type="ustensiles" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
+    });
 }
 
 //fonction qui met a jour les liste déroulantes avec les element restants selon les recettes correspondantes
@@ -77,7 +137,7 @@ function updateConditionsArray(type, value) {
 
     switch (type) {
         case "texte" :
-            if(value.includes(conditionsRecherche[type]))
+            if (value.includes(conditionsRecherche[type]))
                 affinage = true;
             conditionsRecherche[type] = value;
             //si la recherche fais moins de 3 char, on retourne
@@ -85,7 +145,13 @@ function updateConditionsArray(type, value) {
                 return
             break;
         case "appareil" :
-            conditionsRecherche[type] = value;
+            if (value === conditionsRecherche[type])
+                conditionsRecherche[type] = "";
+            else {
+                conditionsRecherche[type] = value;
+                affinage = true;
+            }
+            document.querySelector('span#listeAppareils').parentElement.classList.add('hyde');
             break;
         case "ingredients" :
         case "ustensiles" :
@@ -128,7 +194,15 @@ console.log("Fin du script de chargement de la page");
 window.updateConditionsArray = updateConditionsArray;
 
 //export des variables neccessaires dans les fonctions importées
-export {listeIngredients, listeUstensiles, listeAppareils, conditionsRecherche, matchingRecipes, unMatchingRecipes, setmatchingRecipes}
+export {
+    listeIngredients,
+    listeUstensiles,
+    listeAppareils,
+    conditionsRecherche,
+    matchingRecipes,
+    unMatchingRecipes,
+    setmatchingRecipes
+}
 
 //A FAIRE :
 

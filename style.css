@@ -75,9 +75,11 @@ div.searchContainer img.loupe {
     border-radius: 10px;
     padding: 10px;
 }
+
 div.searchContainer img.loupe:hover {
     background-color: #FFD15B;
 }
+
 main {
     padding: 20px 102px;
     max-width: 1440px;
@@ -86,6 +88,8 @@ main {
 
 main section {
     display: flex;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 main section#filtres div.dropdown {
@@ -105,6 +109,7 @@ main section#filtres div.dropdown:not(.hyde) {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 main section#filtres div.dropdown.hyde {
     max-height: 56px;
 }
@@ -188,6 +193,20 @@ main section#filtres span.liste ul li {
     padding: 10px 0 10px 15px;
     cursor: pointer;
 }
+
+main section#filtres span.liste ul li img {
+    float: right;
+    margin-right: 25px;
+}
+
+main section#filtres span.liste ul.unselected li img {
+    display: none;
+}
+
+main section#filtres span.liste ul.selected li img {
+    display: block;
+}
+
 main section#filtres span.liste ul li.hyde {
     display: none;
 }
@@ -196,16 +215,47 @@ main section#filtres span.liste ul li:hover {
     background: #FFD15B;
 }
 
+main section#filtres p#nbResultats {
+    font-size: 21px;
+    font-family: "Anton";
+    color: #1B1B1B;
+    position: absolute;
+    right: 0;
+}
+
+main section#filtres div#tagList {
+    width: 100%;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+main section#filtres div#tagList span {
+    border-radius: 10px;
+    background: #FFD15B;
+    padding: 17px;
+    color: #000;
+    font-size: 14px;
+    font-family: "Manrope";
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+main section#filtres div#tagList span img {
+    width: 13px;
+    height: 13px;
+    margin-left: 15px;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(8%) hue-rotate(253deg) brightness(100%) contrast(100%);
+    cursor: pointer;
+    vertical-align: middle;
+}
 
 main section#resultats {
     flex-wrap: wrap;
     gap: 66px 48px;
     margin-top: 55px;
     justify-content: space-between;
-}
-
-main div#squeletteCarteRecette {
-    display: none;
 }
 
 main section#resultats div.carteRecette {
@@ -257,6 +307,7 @@ main section#resultats div.carteRecette > div h3 {
     color: #7A7A7A;
     margin: 15px 0;
 }
+
 main section#resultats div.carteRecette > div h3:last-of-type {
     margin-top: 30px;
 }
@@ -297,11 +348,11 @@ main section#resultats div.carteRecette > div span.listeIngredients > div p {
 
 /*description tronquée : */
 
-/*main section#resultats div.carteRecette {*/
-/*    max-height: 730px;*/
-/*}*/
+main section#resultats div.carteRecette {
+    max-height: 730px;
+}
 
-/*p.description {*/
-/*    height: 76px;*/
-/*    overflow: hidden;*/
-/*}*/
+p.description {
+    height: 76px;
+    overflow: hidden;
+}
