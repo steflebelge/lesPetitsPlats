@@ -88,8 +88,7 @@ function fillInHtmlListes() {
     conditionsRecherche.ingredients.forEach(function (ingTmp) {
         //on recupere l element li associé a l ingredient en cours
         let matchingIngredient = document.querySelector('span#listeIngredients').querySelector('li[data-value="' + ingTmp + '"]');
-        if(!matchingIngredient)
-            debugger
+
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingIngredient.parentElement.classList.contains('unselected')) {
             document.querySelector('span#listeIngredients').querySelector('ul.selected').innerHTML += matchingIngredient.outerHTML;
@@ -101,8 +100,7 @@ function fillInHtmlListes() {
     if (conditionsRecherche.appareil) {
         //on recupere l element li associé a l appareil
         let matchingAppareil = document.querySelector('span#listeAppareils').querySelector('li[data-value="' + conditionsRecherche.appareil + '"]');
-        if(!matchingAppareil)
-            debugger
+
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingAppareil.parentElement.classList.contains('unselected')) {
             document.querySelector('span#listeAppareils').querySelector('ul.selected').innerHTML += matchingAppareil.outerHTML;
@@ -114,8 +112,7 @@ function fillInHtmlListes() {
     conditionsRecherche.ustensiles.forEach(function (ustensileTmp) {
         //on recupere l element li associé a l ingredient en cours
         let matchingUstensile = document.querySelector('span#listeUstensiles').querySelector('li[data-value="' + ustensileTmp + '"]');
-        if(!matchingUstensile)
-            debugger
+
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingUstensile.parentElement.classList.contains('unselected')) {
             document.querySelector('span#listeUstensiles').querySelector('ul.selected').innerHTML += matchingUstensile.outerHTML;
@@ -123,11 +120,6 @@ function fillInHtmlListes() {
         }
         document.querySelector('div#tagList').innerHTML += `<span>${ustensileTmp}<img data-type="ustensiles" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
     });
-}
-
-//fonction qui met a jour les liste déroulantes avec les element restants selon les recettes correspondantes
-function updateHtmlUnselectedListeElements() {
-    debugger
 }
 
 //fonction appelée sur changement des conditions de recherche
