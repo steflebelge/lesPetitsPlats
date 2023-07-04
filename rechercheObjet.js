@@ -12,7 +12,6 @@ import {
     listeAppareils,
     listeIngredients,
     listeUstensiles,
-    unMatchingRecipes,
     matchingRecipes,
     setmatchingRecipes
 } from "./script.js";

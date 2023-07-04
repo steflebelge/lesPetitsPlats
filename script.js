@@ -24,7 +24,6 @@ conditionsRecherche["ingredients"] = [];
 conditionsRecherche["ustensiles"] = [];
 conditionsRecherche["appareil"] = "";
 let matchingRecipes = recipes;
-let unMatchingRecipes = [];
 
 //remplissage des variables de listes
 function fillInVarListes() {
@@ -101,6 +100,8 @@ function fillInHtmlListes() {
         //on recupere l element li associé a l appareil
         let matchingAppareil = document.querySelector('span#listeAppareils').querySelector('li[data-value="' + conditionsRecherche.appareil + '"]');
 
+        if(!matchingAppareil)
+            return;
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingAppareil.parentElement.classList.contains('unselected')) {
             document.querySelector('span#listeAppareils').querySelector('ul.selected').innerHTML += matchingAppareil.outerHTML;
@@ -164,7 +165,7 @@ function updateConditionsArray(type, value) {
     //on met a jour nos listes HTML
     fillInHtmlListes();
     //on affiche les recettes correspondantes
-    displayMatchingRecipes();
+    displayMatchingRecipes(conditionsRecherche['texte']);
 
     console.log("Fin de l'ajout d'un filtre");
 }
@@ -174,7 +175,14 @@ function setmatchingRecipes(matchingR) {
     matchingRecipes = matchingR;
 }
 
+function emptyInputs() {
+    document.querySelectorAll('input').forEach(function (inputTmp) {
+        inputTmp.value = "";
+    });
+}
+
 //au chargement on remplit les listes et affiche les recettes
+emptyInputs()
 fillInVarListes();
 fillInHtmlListes();
 displayMatchingRecipes();
@@ -192,20 +200,16 @@ export {
     listeAppareils,
     conditionsRecherche,
     matchingRecipes,
-    unMatchingRecipes,
     setmatchingRecipes
 }
 
 //A FAIRE :
-
-//  - recuperation d'affinage ou non
-//  - savoir si la modification est un affinage :
-//      si oui => recherche dans matchingRecipes
-//      si non => recherche dans unMatchingRecipes
-
-// - Pb de recherche :
-//      - test puis pat, pates manquant
-//      - vide l input texte -> recherche si tags sur unmatching, sinon aff. toutes recipes ca serais bien !
-
+// - cas mtchingTag a null
+// - validateurs
 // - Ré organisation des fonctions : utils, Fnatives, Farray
 // - creation d'une branche par import selon Fonctions utilisées
+// - fiche fonctionnalité
+// - test version en ligne
+// - optimisation code/imports
+// - loader avec settimeout
+// - durée de la recherche en console

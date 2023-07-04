@@ -79,14 +79,18 @@ function getNewRecetteCarte(recipeTmp) {
 }
 
 //fonction qui affiche la liste des recettes correspondantes
-function displayMatchingRecipes() {
+function displayMatchingRecipes(texteInputValue) {
     let sectionResultats = document.querySelector('section#resultats');
-    sectionResultats.innerHTML = "";
 
-    matchingRecipes.forEach(recipeTmp => {
-        let newCarteRecette = getNewRecetteCarte(recipeTmp);
-        sectionResultats.appendChild(newCarteRecette);
-    });
+    if(matchingRecipes.length > 0) {
+        sectionResultats.innerHTML = "";
+        matchingRecipes.forEach(recipeTmp => {
+            let newCarteRecette = getNewRecetteCarte(recipeTmp);
+            sectionResultats.appendChild(newCarteRecette);
+        });
+    }else{
+        sectionResultats.innerHTML = "<p>Aucune recette ne contient ‘" + texteInputValue + "’ vous pouvez chercher «tarte aux pommes », « poisson », etc.</p>";
+    }
 
     document.querySelector('section#filtres').querySelector('p#nbResultats').innerText = matchingRecipes.length + " recettes";
 }
