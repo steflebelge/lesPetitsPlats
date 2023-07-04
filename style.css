@@ -4,7 +4,7 @@ body {
 }
 
 main section#resultats div.carteRecette > div p,
-main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+main section#resultats div.carteRecette > div div.listeIngredients > div h4 {
     margin: 0;
 }
 
@@ -133,10 +133,10 @@ main section#filtres div.dropdown img.displayListe {
 }
 
 main section#filtres div.dropdown:not(.hyde) img.displayListe {
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 
-main section#filtres span.liste {
+main section#filtres div.liste {
     margin-top: 54px;
     position: absolute;
     z-index: 10;
@@ -147,14 +147,14 @@ main section#filtres span.liste {
     width: 100%;
 }
 
-main section#filtres span.liste div.searchContainer {
+main section#filtres div.liste div.searchContainer {
     height: 36px;
     margin: 0 15px;
     border: 1px solid grey;
     position: relative;
 }
 
-main section#filtres span.liste div.searchContainer img {
+main section#filtres div.liste div.searchContainer img {
     padding: 5px;
     width: 18px;
     height: 18px;
@@ -165,14 +165,14 @@ main section#filtres span.liste div.searchContainer img {
     filter: brightness(0) saturate(100%) invert(70%) sepia(0%) saturate(0%) hue-rotate(44deg) brightness(94%) contrast(95%);
 }
 
-main section#filtres span.liste div.searchContainer img.close {
+main section#filtres div.liste div.searchContainer img.close {
     width: 13px;
     height: 13px;
     top: 6px;
     right: 15px;
 }
 
-main section#filtres span.liste div.searchContainer input {
+main section#filtres div.liste div.searchContainer input {
     border: none;
     height: 95%;
     outline: none;
@@ -180,38 +180,38 @@ main section#filtres span.liste div.searchContainer input {
     vertical-align: top;
 }
 
-main section#filtres span.liste div.searchContainer input:placeholder-shown {
+main section#filtres div.liste div.searchContainer input:placeholder-shown {
     width: 83%;
 }
 
-main section#filtres span.liste ul {
+main section#filtres div.liste ul {
     list-style-type: none;
     padding-left: 0;
 }
 
-main section#filtres span.liste ul li {
+main section#filtres div.liste ul li {
     padding: 10px 0 10px 15px;
     cursor: pointer;
 }
 
-main section#filtres span.liste ul li img {
+main section#filtres div.liste ul li img {
     float: right;
     margin-right: 25px;
 }
 
-main section#filtres span.liste ul.unselected li img {
+main section#filtres div.liste ul.unselected li img {
     display: none;
 }
 
-main section#filtres span.liste ul.selected li img {
+main section#filtres div.liste ul.selected li img {
     display: block;
 }
 
-main section#filtres span.liste ul li.hyde {
+main section#filtres div.liste ul li.hyde {
     display: none;
 }
 
-main section#filtres span.liste ul li:hover {
+main section#filtres div.liste ul li:hover {
     background: #FFD15B;
 }
 
@@ -320,7 +320,7 @@ main section#resultats div.carteRecette > div h3:last-of-type {
 }
 
 main section#resultats div.carteRecette > div p.description,
-main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+main section#resultats div.carteRecette > div div.listeIngredients > div h4 {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 400;
@@ -329,21 +329,21 @@ main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
     color: #1B1B1B;
 }
 
-main section#resultats div.carteRecette > div span.listeIngredients > div h4 {
+main section#resultats div.carteRecette > div div.listeIngredients > div h4 {
     font-weight: 500;
 }
 
-main section#resultats div.carteRecette > div span.listeIngredients {
+main section#resultats div.carteRecette > div div.listeIngredients {
     display: flex;
     flex-wrap: wrap;
     gap: 20px 0;
 }
 
-main section#resultats div.carteRecette > div span.listeIngredients > div {
+main section#resultats div.carteRecette > div div.listeIngredients > div {
     width: 50%;
 }
 
-main section#resultats div.carteRecette > div span.listeIngredients > div p {
+main section#resultats div.carteRecette > div div.listeIngredients > div p {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 400;

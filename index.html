@@ -10,7 +10,7 @@
     <title>Les petits plats</title>
     <!--    <script src="test.js"></script>-->
 <!--        <script src="testAnimeaux.js"></script>-->
-    <script defer type="module" src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </head>
 <body>
 <header>
@@ -27,7 +27,7 @@
         <div class="dropdown hyde">
             <p onclick="this.parentElement.classList.toggle('hyde')">Ingredients</p>
             <img class="displayListe" src="img/displayListe.png" alt="">
-            <span class="liste" id="listeIngredients" data-type="ingredients">
+            <div class="liste" id="listeIngredients" data-type="ingredients">
             <div class="searchContainer">
                 <input type="text" oninput="filterTagList(this, 'listeIngredients')" placeholder="Rechercher un ingrédient">
                 <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''; filterTagList(this.parentElement.firstElementChild, 'listeIngredients')">
@@ -35,12 +35,12 @@
             </div>
                 <ul class="selected"></ul>
                 <ul class="unselected"></ul>
-            </span>
+            </div>
         </div>
         <div class="dropdown hyde">
             <p onclick="this.parentElement.classList.toggle('hyde')">Appareils</p>
             <img class="displayListe" src="img/displayListe.png" alt="">
-            <span class="liste" id="listeAppareils" data-type="ustensiles">
+            <div class="liste" id="listeAppareils" data-type="ustensiles">
             <div class="searchContainer">
                 <input type="text" oninput="filterTagList(this, 'listeAppareils')" placeholder="Rechercher un appareil">
                 <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''; filterTagList(this.parentElement.firstElementChild, 'listeAppareils')">
@@ -48,12 +48,12 @@
             </div>
                 <ul class="selected"></ul>
                 <ul class="unselected"></ul>
-            </span>
+            </div>
         </div>
         <div class="dropdown hyde">
             <p onclick="this.parentElement.classList.toggle('hyde')">Ustensiles</p>
             <img class="displayListe" src="img/displayListe.png" alt="">
-            <span class="liste" id="listeUstensiles" data-type="appareil">
+            <div class="liste" id="listeUstensiles" data-type="appareil">
             <div class="searchContainer">
                 <input type="text" oninput="filterTagList(this, 'listeUstensiles')" placeholder="Rechercher un ustensile">
                 <img class="close" src="img/close.png" alt="" onclick="this.parentElement.firstElementChild.value=''; filterTagList(this.parentElement.firstElementChild, 'listeUstensiles')">
@@ -61,7 +61,7 @@
             </div>
                 <ul class="selected"></ul>
                 <ul class="unselected"></ul>
-            </span>
+            </div>
         </div>
         <p id="nbResultats"></p>
         <div id="tagList"></div>

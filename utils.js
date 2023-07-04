@@ -45,7 +45,7 @@ function getNewRecetteCarte(recipeTmp) {
     let ingredients = document.createElement('h3');
     ingredients.innerText = "INGREDIENTS";
 
-    let listeIngredientsTmp = document.createElement('span');
+    let listeIngredientsTmp = document.createElement('div');
     listeIngredientsTmp.classList.add('listeIngredients');
 
     recipeTmp.ingredients.forEach(ingredientTmp => {
@@ -98,8 +98,8 @@ function displayMatchingRecipes(texteInputValue) {
 //Fonction de filtre des listes de tag
 function filterTagList(inputTmp, nomListe) {
     if(inputTmp.value !== "") {
-        document.querySelector('span#' + nomListe).lastElementChild.querySelectorAll('li').forEach(function (eltTmp) {
-            debugger
+        document.querySelector('div#' + nomListe).lastElementChild.querySelectorAll('li').forEach(function (eltTmp) {
+
             if (getComparativeString(eltTmp.dataset.value).includes(getComparativeString(inputTmp.value))) {
                 if (eltTmp.classList.contains('hyde'))
                     eltTmp.classList.remove('hyde');
@@ -107,7 +107,7 @@ function filterTagList(inputTmp, nomListe) {
                 eltTmp.classList.add('hyde');
         });
     }else{
-        document.querySelector('span#' + nomListe).lastElementChild.querySelectorAll('li.hyde').forEach(function (eltTmp) {
+        document.querySelector('div#' + nomListe).lastElementChild.querySelectorAll('li.hyde').forEach(function (eltTmp) {
                 eltTmp.classList.remove('hyde');
         });
     }

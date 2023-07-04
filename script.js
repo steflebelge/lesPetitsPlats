@@ -62,37 +62,37 @@ function fillInVarListes() {
 //remplissage des elements html listes
 function fillInHtmlListes() {
     //vidage des listes
-    document.querySelector('span#listeUstensiles').querySelectorAll('ul').forEach(function (listeTmp) {
+    document.querySelector('div#listeUstensiles').querySelectorAll('ul').forEach(function (listeTmp) {
         listeTmp.innerHTML = "";
     });
-    document.querySelector('span#listeIngredients').querySelectorAll('ul').forEach(function (listeTmp) {
+    document.querySelector('div#listeIngredients').querySelectorAll('ul').forEach(function (listeTmp) {
         listeTmp.innerHTML = "";
     });
-    document.querySelector('span#listeAppareils').querySelectorAll('ul').forEach(function (listeTmp) {
+    document.querySelector('div#listeAppareils').querySelectorAll('ul').forEach(function (listeTmp) {
         listeTmp.innerHTML = "";
     });
     document.querySelector('div#tagList').innerHTML = "";
 
     //remplissage des unselected
     listeUstensiles.forEach(function (ustensilTmp) {
-        document.querySelector('span#listeUstensiles').lastElementChild.innerHTML += "<li data-value='" + ustensilTmp + "' data-type='ustensiles' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ustensilTmp + "<img src='img/remove.png' alt=''></li>";
+        document.querySelector('div#listeUstensiles').lastElementChild.innerHTML += "<li data-value='" + ustensilTmp + "' data-type='ustensiles' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ustensilTmp + "<img src='img/remove.png' alt=''></li>";
     });
     listeIngredients.forEach(function (ingredientTmp) {
-        document.querySelector('span#listeIngredients').lastElementChild.innerHTML += "<li data-value='" + ingredientTmp + "' data-type='ingredients' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ingredientTmp + "<img src='img/remove.png' alt=''></li>";
+        document.querySelector('div#listeIngredients').lastElementChild.innerHTML += "<li data-value='" + ingredientTmp + "' data-type='ingredients' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + ingredientTmp + "<img src='img/remove.png' alt=''></li>";
     });
     listeAppareils.forEach(function (appareilTmp) {
-        document.querySelector('span#listeAppareils').lastElementChild.innerHTML += "<li data-value='" + appareilTmp + "' data-type='appareil' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + appareilTmp + "<img src='img/remove.png' alt=''></li>";
+        document.querySelector('div#listeAppareils').lastElementChild.innerHTML += "<li data-value='" + appareilTmp + "' data-type='appareil' onclick='updateConditionsArray(this.dataset.type, this.innerText)'>" + appareilTmp + "<img src='img/remove.png' alt=''></li>";
     });
 
     //remplissage des tags selectionnés (selected)
     //ingredients
     conditionsRecherche.ingredients.forEach(function (ingTmp) {
         //on recupere l element li associé a l ingredient en cours
-        let matchingIngredient = document.querySelector('span#listeIngredients').querySelector('li[data-value="' + ingTmp + '"]');
+        let matchingIngredient = document.querySelector('div#listeIngredients').querySelector('li[data-value="' + ingTmp + '"]');
 
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingIngredient.parentElement.classList.contains('unselected')) {
-            document.querySelector('span#listeIngredients').querySelector('ul.selected').innerHTML += matchingIngredient.outerHTML;
+            document.querySelector('div#listeIngredients').querySelector('ul.selected').innerHTML += matchingIngredient.outerHTML;
             matchingIngredient.remove();
         }
         document.querySelector('div#tagList').innerHTML += `<span>${ingTmp}<img data-type="ingredients" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
@@ -100,13 +100,13 @@ function fillInHtmlListes() {
     //appareil
     if (conditionsRecherche.appareil) {
         //on recupere l element li associé a l appareil
-        let matchingAppareil = document.querySelector('span#listeAppareils').querySelector('li[data-value="' + conditionsRecherche.appareil + '"]');
+        let matchingAppareil = document.querySelector('div#listeAppareils').querySelector('li[data-value="' + conditionsRecherche.appareil + '"]');
 
         if(!matchingAppareil)
             return;
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingAppareil.parentElement.classList.contains('unselected')) {
-            document.querySelector('span#listeAppareils').querySelector('ul.selected').innerHTML += matchingAppareil.outerHTML;
+            document.querySelector('div#listeAppareils').querySelector('ul.selected').innerHTML += matchingAppareil.outerHTML;
             matchingAppareil.remove();
         }
         document.querySelector('div#tagList').innerHTML += `<span>${conditionsRecherche.appareil}<img data-type="appareil" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
@@ -114,11 +114,11 @@ function fillInHtmlListes() {
     //ustensiles
     conditionsRecherche.ustensiles.forEach(function (ustensileTmp) {
         //on recupere l element li associé a l ingredient en cours
-        let matchingUstensile = document.querySelector('span#listeUstensiles').querySelector('li[data-value="' + ustensileTmp + '"]');
+        let matchingUstensile = document.querySelector('div#listeUstensiles').querySelector('li[data-value="' + ustensileTmp + '"]');
 
         //si il est encore dans la liste des non selectionnés, on le deplace
         if (matchingUstensile.parentElement.classList.contains('unselected')) {
-            document.querySelector('span#listeUstensiles').querySelector('ul.selected').innerHTML += matchingUstensile.outerHTML;
+            document.querySelector('div#listeUstensiles').querySelector('ul.selected').innerHTML += matchingUstensile.outerHTML;
             matchingUstensile.remove();
         }
         document.querySelector('div#tagList').innerHTML += `<span>${ustensileTmp}<img data-type="ustensiles" onclick="updateConditionsArray(this.dataset.type, this.parentElement.innerText)" src="img/close.png"></span>`;
@@ -147,7 +147,7 @@ function updateConditionsArray(type, value) {
                 conditionsRecherche[type] = value;
                 affinage = true;
             }
-            document.querySelector('span#listeAppareils').parentElement.classList.add('hyde');
+            document.querySelector('div#listeAppareils').parentElement.classList.add('hyde');
             break;
         case "ingredients" :
         case "ustensiles" :
