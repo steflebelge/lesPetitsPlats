@@ -9,7 +9,7 @@ import {
 import {computeMatchingRecipes} from "./rechercheObjet.js";
 
 //log de la date time du debut
-console.log("Debut du script de chargement de la page");
+//console.log("Debut du script de chargement de la page");
 
 //script général, il importe les données neccessaires et gère la navigation
 //les fichiers importés correspondront aux différents algorithme de recherche
@@ -24,6 +24,8 @@ conditionsRecherche["ingredients"] = [];
 conditionsRecherche["ustensiles"] = [];
 conditionsRecherche["appareil"] = "";
 let matchingRecipes = recipes;
+let startDate = null;
+let duree = null;
 
 //remplissage des variables de listes
 function fillInVarListes() {
@@ -125,7 +127,8 @@ function fillInHtmlListes() {
 
 //fonction appelée sur changement des conditions de recherche
 function updateConditionsArray(type, value) {
-    console.log("Debut de l'ajout d'un filtre");
+    //console.log("Debut de l'ajout d'un filtre");
+    startDate = new Date().getTime();
     let affinage = false;
 
     switch (type) {
@@ -167,7 +170,9 @@ function updateConditionsArray(type, value) {
     //on affiche les recettes correspondantes
     displayMatchingRecipes(conditionsRecherche['texte']);
 
-    console.log("Fin de l'ajout d'un filtre");
+    duree = ((new Date().getTime()) - startDate);
+    document.querySelector('section#filtres').querySelector('p#nbResultats').innerHTML += "<span>en " + duree + " ms</span>";
+    console.log("Fin de l'ajout d'un filtre, durée de la recherche : " + duree + "ms");
 }
 
 // setter de matchingRecipes, pour accès depuis fonction de recherche
@@ -188,7 +193,7 @@ fillInHtmlListes();
 displayMatchingRecipes();
 
 //log de la date time de fin
-console.log("Fin du script de chargement de la page");
+//console.log("Fin du script de chargement de la page");
 
 //rend ces fonctions accessible depuis le DOM
 window.updateConditionsArray = updateConditionsArray;

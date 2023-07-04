@@ -22,7 +22,7 @@ for (const movBis of movements) {
     movementsUsdForOf.push(movBis * eurosToUsd);
 }
 
-console.log(movements);
+//console.log(movements);
 
 const depots = movements.map(
     (movTris, i) => `movement ${i + 1} : vous avez ${movTris > 0 ? 'deposé' : 'retiré'} ${Math.abs(movTris)} euros`
@@ -33,7 +33,7 @@ const deposit = movements.filter(mov => mov > 0);
 
 
 const balance = movements.reduce(function (acc, cur, i, arr){
-    // console.log(`Iteration num.${i} : ${acc}`);
+    // //console.log(`Iteration num.${i} : ${acc}`);
     return acc + cur;
 }, 0);
 
@@ -43,4 +43,4 @@ const max = movements.reduce(function (acc, cur){
     return cur;
 }, movements[0]);
 
-console.log(max);
+//console.log(max);

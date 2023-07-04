@@ -17,7 +17,7 @@ import {
 } from "./script.js";
 
 function computeMatchingRecipes(affinage) {
-    console.log("Debut fonction computeRecherche, affinnage : " + affinage);
+    //console.log("Debut fonction computeRecherche, affinnage : " + affinage);
 
     let newMatchingRecipes = [];
     let searchArray = matchingRecipes;
@@ -29,16 +29,16 @@ function computeMatchingRecipes(affinage) {
 
     //si un appareil est selectionné, on recherche les recettes correspondantes
     if (conditionsRecherche["appareil"]) {
-        console.log("Debut de la recherche des recettes avec cet appareil " + conditionsRecherche["appareil"] + ". Taille actuelle des resultats : " + matchingRecipes.length);
+        //console.log("Debut de la recherche des recettes avec cet appareil " + conditionsRecherche["appareil"] + ". Taille actuelle des resultats : " + matchingRecipes.length);
         setmatchingRecipes(matchingRecipes.filter(recipeTmp => {
             return (getComparativeString(recipeTmp.appliance) === getComparativeString(conditionsRecherche["appareil"]))
         }));
-        console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
+        //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
     }
 
     //si au moins un ingredient est selectionné, on recherche les recettes correspondantes
     if (conditionsRecherche["ingredients"].length > 0) {
-        console.log("Debut de la recherche des recettes avec les ingrédients. Taille actuelle des resultats : " + matchingRecipes.length);
+        //console.log("Debut de la recherche des recettes avec les ingrédients. Taille actuelle des resultats : " + matchingRecipes.length);
         matchingRecipes.forEach(function (recipeTmp) {
             let keepInMatching = true;
             conditionsRecherche["ingredients"].forEach(function (ingredientTmp) {
@@ -51,12 +51,12 @@ function computeMatchingRecipes(affinage) {
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
 
-        console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
+        //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
     }
 
     //si au moins un ustensile est selectionné, on recherche les recettes correspondantes
     if (conditionsRecherche["ustensiles"].length > 0) {
-        console.log("Debut de la recherche des recettes avec les ustensiles. Taille actuelle des resultats : " + matchingRecipes.length);
+        //console.log("Debut de la recherche des recettes avec les ustensiles. Taille actuelle des resultats : " + matchingRecipes.length);
         matchingRecipes.forEach(function (recipeTmp) {
             let keepInMatching = true;
             conditionsRecherche["ustensiles"].forEach(function (ustensileTmp) {
@@ -68,7 +68,7 @@ function computeMatchingRecipes(affinage) {
         });
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
-        console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
+        //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
     }
 
     //on verifie si on a bien le dernier etat de la barre de recherche
@@ -77,7 +77,7 @@ function computeMatchingRecipes(affinage) {
     //si du texte a été rentré dans la barre de recherche, on recherche les recettes correspondantes
     if (conditionsRecherche["texte"]) {
         //on recherche les recettes dont le nom contient le texte recherché
-        console.log("Debut de la recherche textuelle. Taille actuelle des resultats : " + matchingRecipes.length);
+        //console.log("Debut de la recherche textuelle. Taille actuelle des resultats : " + matchingRecipes.length);
 
         matchingRecipes.forEach(function (recipeTmp) {
             let keepInMatching = true;
@@ -90,7 +90,7 @@ function computeMatchingRecipes(affinage) {
         });
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
-        console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
+        //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
     }
 }
 
