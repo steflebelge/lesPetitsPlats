@@ -3,7 +3,7 @@ import {listeIngredients, listeUstensiles, listeAppareils} from "./script.js";
 
 //Met en majuscules la 1ere letttre d'une string
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return (string.charAt(0).toUpperCase() + string.slice(1)).split("'").join(" ");
 }
 
 //tri par ordre alphabetique des listes
@@ -15,7 +15,7 @@ function orderStringList(list) {
 
 //fonction qui supprimer les espaces, passe tout les chars en minuscules, supprime les accents
 function getComparativeString(str) {
-    return str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return (str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).split("'").join(" ");
 }
 
 //fonction qui crée une carte a partir d'une recette passée en paramètre

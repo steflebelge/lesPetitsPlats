@@ -209,7 +209,6 @@ export {
 }
 
 //A FAIRE :
-// - cas mtchingTag a null
 // - validateurs
 // - Ré organisation des fonctions : utils, Fnatives, Farray
 // - creation d'une branche par import selon Fonctions utilisées
@@ -217,4 +216,3 @@ export {
 // - test version en ligne
 // - optimisation code/imports
 // - loader avec settimeout
-// - durée de la recherche en console
