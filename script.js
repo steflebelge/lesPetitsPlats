@@ -4,12 +4,9 @@ import {
     capitalizeFirstLetter,
     getComparativeString,
     displayMatchingRecipes,
-    getNewRecetteCarte
 } from "./utils.js";
 import {computeMatchingRecipes} from "./rechercheObjet.js";
 
-//log de la date time du debut
-//console.log("Debut du script de chargement de la page");
 
 //script général, il importe les données neccessaires et gère la navigation
 //les fichiers importés correspondront aux différents algorithme de recherche
@@ -209,10 +206,8 @@ export {
 }
 
 //A FAIRE :
-// - validateurs
 // - Ré organisation des fonctions : utils, Fnatives, Farray
 // - creation d'une branche par import selon Fonctions utilisées
 // - fiche fonctionnalité
 // - test version en ligne
-// - optimisation code/imports
 // - loader avec settimeout

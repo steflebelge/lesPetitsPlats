@@ -2,16 +2,9 @@
 import {recipes} from "./recipes.js";
 import {
     getComparativeString,
-    getNewRecetteCarte,
-    capitalizeFirstLetter,
-    displayMatchingRecipes,
-    orderStringList
 } from "./utils.js";
 import {
     conditionsRecherche,
-    listeAppareils,
-    listeIngredients,
-    listeUstensiles,
     matchingRecipes,
     setmatchingRecipes
 } from "./script.js";
@@ -93,6 +86,5 @@ function computeMatchingRecipes(affinage) {
         //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
     }
 }
-
 
 export {computeMatchingRecipes};

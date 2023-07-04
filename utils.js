@@ -1,5 +1,5 @@
 import {matchingRecipes} from "./script.js";
-import {listeIngredients, listeUstensiles, listeAppareils} from "./script.js";
+import {listeIngredients} from "./script.js";
 
 //Met en majuscules la 1ere letttre d'une string
 function capitalizeFirstLetter(string) {
