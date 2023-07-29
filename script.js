@@ -5,7 +5,7 @@ import {
     getComparativeString,
     displayMatchingRecipes,
 } from "./utils.js";
-import {computeMatchingRecipes} from "./rechercheObjet.js";
+import {computeMatchingRecipes} from "./rechercheNative.js";
 
 
 //script général, il importe les données neccessaires et gère la navigation
