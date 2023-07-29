@@ -206,8 +206,5 @@ export {
 }
 
 //A FAIRE :
-// - Ré organisation des fonctions : utils, Fnatives, Farray
-// - creation d'une branche par import selon Fonctions utilisées
 // - fiche fonctionnalité
 // - test version en ligne
-// - loader avec settimeout
