@@ -32,15 +32,19 @@ function computeMatchingRecipes(affinage) {
     //si au moins un ingredient est selectionné, on recherche les recettes correspondantes
     if (conditionsRecherche["ingredients"].length > 0) {
         //console.log("Debut de la recherche des recettes avec les ingrédients. Taille actuelle des resultats : " + matchingRecipes.length);
-        matchingRecipes.forEach(function (recipeTmp) {
+        for(let i =0; i < matchingRecipes.length; i++){
+            let recipeTmp = matchingRecipes[i];
             let keepInMatching = true;
-            conditionsRecherche["ingredients"].forEach(function (ingredientTmp) {
+            for(let j = 0; j < conditionsRecherche["ingredients"].length; j++) {
+                let ingredientTmp = conditionsRecherche["ingredients"][j];
                 if (recipeTmp.ingredients.filter(ingredientRecipeTmp => getComparativeString(ingredientRecipeTmp.ingredient) === getComparativeString(ingredientTmp)).length === 0)
                     keepInMatching = false;
-            });
-            if (keepInMatching)
-                newMatchingRecipes.push(recipeTmp);
-        });
+            }
+            if (keepInMatching) {
+                // newMatchingRecipes = [...newMatchingRecipes, recipeTmp];
+                newMatchingRecipes[newMatchingRecipes.length] = recipeTmp;
+            }
+        }
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
 
@@ -50,15 +54,19 @@ function computeMatchingRecipes(affinage) {
     //si au moins un ustensile est selectionné, on recherche les recettes correspondantes
     if (conditionsRecherche["ustensiles"].length > 0) {
         //console.log("Debut de la recherche des recettes avec les ustensiles. Taille actuelle des resultats : " + matchingRecipes.length);
-        matchingRecipes.forEach(function (recipeTmp) {
+        for(let i =0; i < matchingRecipes.length; i++){
+            let recipeTmp = matchingRecipes[i];
             let keepInMatching = true;
-            conditionsRecherche["ustensiles"].forEach(function (ustensileTmp) {
+            for(let j = 0; j < conditionsRecherche["ustensiles"].length; j++) {
+                let ustensileTmp = conditionsRecherche["ustensiles"][j];
                 if (recipeTmp.ustensils.filter(ustensileRecipeTmp => getComparativeString(ustensileRecipeTmp) === getComparativeString(ustensileTmp)).length === 0)
                     keepInMatching = false;
-            });
-            if (keepInMatching)
-                newMatchingRecipes.push(recipeTmp);
-        });
+            }
+            if (keepInMatching) {
+                // newMatchingRecipes = [...newMatchingRecipes, recipeTmp];
+                newMatchingRecipes[newMatchingRecipes.length] = recipeTmp;
+            }
+        }
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
         //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
@@ -72,15 +80,18 @@ function computeMatchingRecipes(affinage) {
         //on recherche les recettes dont le nom contient le texte recherché
         //console.log("Debut de la recherche textuelle. Taille actuelle des resultats : " + matchingRecipes.length);
 
-        matchingRecipes.forEach(function (recipeTmp) {
+        for(let i =0; i < matchingRecipes.length; i++){
+            let recipeTmp = matchingRecipes[i];
             let keepInMatching = true;
             if (!getComparativeString(recipeTmp.name).includes(getComparativeString(conditionsRecherche["texte"]))
                 && !getComparativeString(recipeTmp.description).includes(getComparativeString(conditionsRecherche["texte"]))
                 && recipeTmp.ingredients.filter(ingredientTmp => getComparativeString(ingredientTmp.ingredient).includes(getComparativeString(conditionsRecherche["texte"]))).length === 0)
                 keepInMatching = false;
-            if (keepInMatching)
-                newMatchingRecipes.push(recipeTmp);
-        });
+            if (keepInMatching) {
+                // newMatchingRecipes = [...newMatchingRecipes, recipeTmp];
+                newMatchingRecipes[newMatchingRecipes.length] = recipeTmp;
+            }
+        }
         setmatchingRecipes(JSON.parse(JSON.stringify(newMatchingRecipes)));
         newMatchingRecipes = [];
         //console.log("Nouvelle taille des resultats : " + matchingRecipes.length);
